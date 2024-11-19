@@ -3,10 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title>Invernadero Digital</title>
+    <link rel="stylesheet" href="img/invernadero.jpg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .main-content {
+            display: flex;
+            padding: 20px;
+        }
+        .left-section, .right-section {
+            flex: 1;
+            margin: 10px;
+        }
+        .left-section img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        .right-section h2 {
+            color: #4CAF50;
+        }
+        .info-section {
+            background-color: #e8f5e9;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .sensors {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .sensor-card {
+            background-color: #ffffff;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            text-align: center;
+            width: 30%;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1><%= title %></h1>
-    <p>¡Bienvenido al monitoreo de sensores!</p>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="logo">Invernadero Digital</div>
+        <div class="nav-links">
+            <a href="#planta">Plantas</a>
+            <a href="#climate">Calendario</a>
+        </div>
+    </nav>
+
+    <!-- Contenido principal -->
+    <div class="main-content">
+        <div class="left-section">
+            <img src="img/invernadero.jpg" alt="Imagen de un invernadero" class="greenhouse-image">
+        </div>
+        <div class="right-section">
+            <h2>Plantas en el invernadero</h2>
+            <ul>
+                <li>Acelga</li>
+                <li>Lechuga</li>
+                <li>Brócoli</li>
+                <li>Tomates</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Sección de datos relevantes -->
+    <div class="info-section">
+        <h3>Clima del invernadero</h3>
+        <p>Controla las condiciones ideales para tus plantas.</p>
+    </div>
+
+    <!-- Sensores -->
+    <div class="sensors">
+        <div class="sensor-card">
+            <h4>Humedad</h4>
+            <p>45%</p>
+        </div>
+        <div class="sensor-card">
+            <h4>Temperatura</h4>
+            <p>22°C</p>
+        </div>
+        <div class="sensor-card">
+            <h4>Estado del riego</h4>
+            <p>Activo</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Invernadero Digital. Todos los derechos reservados.Realizado por Luis Tobar Gonzalez & Gamaliel Moya Vasquéz</p>
+    </footer>
 </body>
 </html>
