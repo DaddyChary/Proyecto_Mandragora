@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<<<<<<< HEAD
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invernadero Digital</title>
-    <link rel="stylesheet" href="img/invernadero.jpg">
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Invernadero Digital</title>
+        <link rel="stylesheet" href="img/invernadero.jpg">
+        <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -69,70 +68,82 @@
             padding: 10px 20px;
             margin-top: 20px;
         }
-    </style>
-</head>
-<body>
-    <!-- Barra de navegación -->
-    <nav class="navbar">
-        <div class="logo">Invernadero Digital</div>
-        <div class="nav-links">
-            <a href="#planta">Plantas</a>
-            <a href="#climate">Calendario</a>
-        </div>
-    </nav>
-
-    <!-- Contenido principal -->
-    <div class="main-content">
-        <div class="left-section">
-            <img src="img/invernadero.jpg" alt="Imagen de un invernadero" class="greenhouse-image">
-        </div>
-        <div class="right-section">
-            <h2>Plantas en el invernadero</h2>
-            <ul>
-                <li>Acelga</li>
-                <li>Lechuga</li>
-                <li>Brócoli</li>
-                <li>Tomates</li>
-            </ul>
-        </div>
-    </div>
-
-    <!-- Sección de datos relevantes -->
-    <div class="info-section">
-        <h3>Clima del invernadero</h3>
-        <p>Controla las condiciones ideales para tus plantas.</p>
-    </div>
-
-    <!-- Sensores -->
-    <div class="sensors">
-        <div class="sensor-card">
-            <h4>Humedad</h4>
-            <p>45%</p>
-        </div>
-        <div class="sensor-card">
-            <h4>Temperatura</h4>
-            <p>22°C</p>
-        </div>
-        <div class="sensor-card">
-            <h4>Estado del riego</h4>
-            <p>Activo</p>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Invernadero Digital. Todos los derechos reservados.Realizado por Luis Tobar Gonzalez & Gamaliel Moya Vasquéz</p>
-    </footer>
-</body>
-=======
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title><%= title %></title>
+        </style>
     </head>
     <body>
-        <h1><%= title %></h1>
-        <p>¡Bienvenido al monitoreo de sensores!</p>
+        <!-- Barra de navegación -->
+        <nav class="navbar">
+            <div class="logo">Invernadero Digital</div>
+            <div class="nav-links">
+                <a href="./index.ejs">Plantas</a>
+                <a href="./calendario.ejs">Calendario</a>
+            </div>
+        </nav>
+
+        <!-- Contenido principal -->
+        <div class="main-content">
+            <div class="left-section">
+                <img src="img/invernadero.jpg" alt="Imagen de un invernadero"
+                    class="greenhouse-image">
+            </div>
+            <div class="right-section">
+                <h2>Plantas en el invernadero</h2>
+                <ul>
+                    <li>Acelga</li>
+                    <li>Lechuga</li>
+                    <li>Brócoli</li>
+                    <li>Tomates</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Sección de datos relevantes -->
+        <div class="info-section">
+            <h3>Clima del invernadero</h3>
+            <p>Controla las condiciones ideales para tus plantas.</p>
+        </div>
+
+        <!-- Sensores -->
+        <div class="sensors">
+            <div class="sensor-card">
+                <h4>Humedad</h4>
+                <p id="humedad">Cargando...</p>
+            </div>
+            <div class="sensor-card">
+                <h4>Temperatura</h4>
+                <p id="temperatura">Cargando...</p>
+            </div>
+            <div class="sensor-card">
+                <h4>Estado del riego</h4>
+                <p id="riego">Cargando...</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Invernadero Digital. Todos los derechos reservados.
+                Realizado por Luis Tobar Gonzalez & Gamaliel Moya Vasquéz</p>
+        </footer>
+
+        <script>
+            // Función para actualizar los datos de los sensores
+            function updateSensorData() {
+                fetch('/api/simulatedData')  // Realiza la solicitud GET a la ruta
+                    .then(response => response.json())
+                    .then(data => {
+                        // Actualiza los valores en la página
+                        document.getElementById('humedad').textContent = `${data.humedad}%`;
+                        document.getElementById('temperatura').textContent = `${data.temperatura}°C`;
+                        document.getElementById('riego').textContent = data.humedad < 40 ? 'Activo' : 'Inactivo';
+                    })
+                    .catch(error => console.error('Error al obtener los datos:', error));
+            }
+
+            // Llama a la función al cargar la página
+            updateSensorData();
+
+            // Actualiza los datos cada 5 segundos
+            setInterval(updateSensorData, 5000);
+        </script>
     </body>
->>>>>>> f80ecc896cd3ec5be966370f7ffd89bfd9d1820e
 </html>
