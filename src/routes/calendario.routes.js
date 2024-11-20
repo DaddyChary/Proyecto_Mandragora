@@ -1,29 +1,29 @@
 const { Router } = require('express');
 const calendarioController = require('../db/controller/calendarioController');
-const router = Router();
+const ruta = Router();
 
-router.get('/', async (req, res) => {
+ruta.get('/', async (req, res) => {
     try {
         const data = await calendarioController.getAll();
-        res.status(200).json(data);
+        res.render('calendario', { calendario: data }); // Pass data to the view
     } catch (err) {
         console.error(err.stack);
-        res.status(500).json({ error: 'Error al obtener los eventos' });
+        res.json({ message: 'Error al obtener los eventos', codeStatus: 500, data: err });
     }
 });
 
-router.get('/:id', async (req, res) => {
+ruta.get('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const data = await calendarioController.getOne(id);
-        res.status(200).json(data);
+        res.status(200).json(data); // Send back as JSON
     } catch (err) {
         console.error(err.stack);
-        res.status(500).json({ error: 'Error al obtener el evento' });
+        res.status(500).json({ message: 'Error al obtener el evento', codeStatus: 500, data: err });
     }
 });
 
-router.post('/', async (req, res) => {
+ruta.post('/', async (req, res) => {
     const { title, date, description } = req.body;
     try {
         const newData = { title, date, description };
@@ -31,11 +31,11 @@ router.post('/', async (req, res) => {
         res.status(201).json({ message: 'Evento creado', result });
     } catch (err) {
         console.error(err.stack);
-        res.status(500).json({ error: 'Error al crear el evento' });
+        res.status(500).json({ message: 'Error al crear el evento', codeStatus: 500, data: err });
     }
 });
 
-router.put('/:id', async (req, res) => {
+ruta.put('/:id', async (req, res) => {
     const { id } = req.params;
     const { title, date, description } = req.body;
     try {
@@ -44,19 +44,19 @@ router.put('/:id', async (req, res) => {
         res.status(200).json({ message: 'Evento actualizado', result });
     } catch (err) {
         console.error(err.stack);
-        res.status(500).json({ error: 'Error al actualizar el evento' });
+        res.status(500).json({ message: 'Error al actualizar el evento', codeStatus: 500, data: err });
     }
 });
 
-router.delete('/:id', async (req, res) => {
+ruta.delete('/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const result = await calendarioController.delete(id);
         res.status(200).json({ message: 'Evento eliminado', result });
     } catch (err) {
         console.error(err.stack);
-        res.status(500).json({ error: 'Error al eliminar el evento' });
+        res.status(500).json({ message: 'Error al eliminar el evento', codeStatus: 500, data: err });
     }
 });
 
-module.exports = router;
+module.exports = ruta;

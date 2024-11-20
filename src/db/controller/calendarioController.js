@@ -1,53 +1,55 @@
-// calendarioController.js
 const conn = require('../connection.js');
 
-// Suponiendo que tienes una base de datos que guarda los eventos
-const getAll = async () => {
-    try {
-        // Obtener todos los eventos de la base de datos (simulado aquí)
-        const eventos = await conn.query('SELECT * FROM eventos');
-        return eventos.rows;
-    } catch (err) {
-        throw new Error('Error al obtener los eventos');
-    }
-};
+const TABLA = "MonitoreoPlanta";
 
-const getOne = async (id) => {
-    try {
-        const evento = await conn.query('SELECT * FROM eventos WHERE id = $1', [id]);
-        return evento.rows[0];
-    } catch (err) {
-        throw new Error('Error al obtener el evento');
-    }
-};
+// Obtener todos los registros de monitoreo (planta)
+function getAll() {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM ${TABLA} ORDER BY fecha_hora DESC`;
+        conn.query(query, (error, result) => {
+            return error ? reject(error) : resolve(result);
+        });
+    });
+}
 
-const create = async (newData) => {
-    try {
-        const result = await conn.query('INSERT INTO eventos (title, date, description) VALUES ($1, $2, $3) RETURNING *', 
-            [newData.title, newData.date, newData.description]);
-        return result.rows[0];
-    } catch (err) {
-        throw new Error('Error al crear el evento');
-    }
-};
+// Obtener un único registro por su ID
+function getOneBy(id) {
+    return new Promise((resolve, reject) => {
+        const query = `SELECT * FROM ${TABLA} WHERE id = ?`;
+        conn.query(query, [id], (error, result) => {
+            return error ? reject(error) : resolve(result);
+        });
+    });
+}
 
-const update = async (id, updatedData) => {
-    try {
-        const result = await conn.query('UPDATE eventos SET title = $1, date = $2, description = $3 WHERE id = $4 RETURNING *',
-            [updatedData.title, updatedData.date, updatedData.description, id]);
-        return result.rows[0];
-    } catch (err) {
-        throw new Error('Error al actualizar el evento');
-    }
-};
+// Insertar un nuevo monitoreo en la base de datos
+function insert(data) {
+    return new Promise((resolve, reject) => {
+        const query = `INSERT INTO ${TABLA} SET ?`;
+        conn.query(query, data, (error, result) => {
+            return error ? reject(error) : resolve(result);
+        });
+    });
+}
 
-const deleteEvent = async (id) => {
-    try {
-        const result = await conn.query('DELETE FROM eventos WHERE id = $1 RETURNING *', [id]);
-        return result.rows[0];
-    } catch (err) {
-        throw new Error('Error al eliminar el evento');
-    }
-};
+// Actualizar los datos de monitoreo de una planta
+function update(data) {
+    return new Promise((resolve, reject) => {
+        const query = `UPDATE ${TABLA} SET ? WHERE id = ?`;
+        conn.query(query, [data, data.id], (error, result) => {
+            return error ? reject(error) : resolve(result);
+        });
+    });
+}
 
-module.exports = { getAll, getOne, create, update, deleteEvent };
+// Eliminar un registro de monitoreo por su ID
+function deleteBy(id) {
+    return new Promise((resolve, reject) => {
+        const query = `DELETE FROM ${TABLA} WHERE id = ?`;
+        conn.query(query, [id], (error, result) => {
+            return error ? reject(error) : resolve(result);
+        });
+    });
+}
+
+module.exports = { getAll, getOneBy, insert, update, deleteBy };
