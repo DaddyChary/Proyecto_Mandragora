@@ -1,45 +1,39 @@
-const { io } = require('../../server');  // Importar io desde server.js
+// src/db/controller/sensorController.js
 
-// Datos simulados de los sensores
-// Crea el objeto de datos simulados
-let simulatedData = {
-    humedad: 50,
-    temperatura: 25
-};
+let latestSensorData = { humedad: 50, temperatura: 25 }; // Datos iniciales simulados
 
-// Simulación de actualización de datos cada 5 segundos
-setInterval(() => {
-    simulatedData.humedad = Math.random() * (100 - 30) + 30; // Rango de humedad (30% - 100%)
-    simulatedData.temperatura = Math.random() * (35 - 15) + 15; // Rango de temperatura (15°C - 35°C)
-
-    console.log("Datos simulados actualizados:", simulatedData);
-}, 5000);  // Actualiza cada 5 segundos
-
-// Función para obtener los datos simulados
-const getSimulatedData = () => {
-    console.log("Enviando datos simulados:", simulatedData);
-    return simulatedData;  // Solo retorna los datos simulados
-};
-
-// Otros controladores (si los tienes)
+// Obtener datos reales (opcional: podrías integrarlo con una base de datos en el futuro)
 const getSensorData = (req, res) => {
-    res.json(sensorData); // Retorna los datos recibidos por POST
+    res.json(latestSensorData); // Devuelve los datos más recientes
 };
 
+// Recibir datos reales enviados por el script de Python
 const postSensorData = (req, res) => {
-    const { humidity, timestamp } = req.body; // Datos enviados en el cuerpo de la solicitud
-    if (humidity !== undefined && timestamp) {
-        const newData = { humidity, timestamp };
-        sensorData.push(newData);
+    const { humedad, temperatura } = req.body;
 
-        // Emitir los datos a todos los clientes conectados en tiempo real
-        io.emit('sensorData', newData);
-
-        res.status(201).json({ message: 'Datos recibidos', data: newData });
+    if (humedad && temperatura) {
+        latestSensorData = { humedad, temperatura }; // Actualiza los datos
+        console.log(`Datos actualizados: Humedad - ${humedad}, Temperatura - ${temperatura}`);
+        res.status(200).send({ message: "Datos recibidos correctamente" });
     } else {
-        res.status(400).json({ message: 'Datos inválidos' });
+        res.status(400).send({ message: "Datos incompletos" });
     }
 };
 
-// Exportar la función getSimulatedData
-module.exports = { getSensorData, postSensorData, getSimulatedData };
+// Obtener datos simulados
+const getSimulatedData = (req, res) => {
+    const simulatedData = {
+        humedad: Math.random() * (100 - 30) + 30, // Rango de humedad (30% - 100%)
+        temperatura: Math.random() * (35 - 15) + 15, // Rango de temperatura (15°C - 35°C)
+    };
+    res.json({
+        humedad: simulatedData.humedad.toFixed(0), // Redondea a 0 decimales
+        temperatura: simulatedData.temperatura.toFixed(0), // Redondea a 0 decimales
+    });
+};
+
+module.exports = {
+    getSensorData,
+    postSensorData,
+    getSimulatedData,
+};

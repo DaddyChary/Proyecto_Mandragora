@@ -128,16 +128,17 @@
         <script>
             // Función para actualizar los datos de los sensores
             function updateSensorData() {
-                fetch('/api/simulatedData')  // Realiza la solicitud GET a la ruta
+                fetch('/p')  // Cambia aquí si tu ruta es diferente
                     .then(response => response.json())
                     .then(data => {
-                        // Actualiza los valores en la página
-                        document.getElementById('humedad').textContent = `${data.humedad}%`;
-                        document.getElementById('temperatura').textContent = `${data.temperatura}°C`;
+                        // Actualiza los valores en la página con 2 decimales
+                        document.getElementById('humedad').textContent = `${parseFloat(data.humedad).toFixed(2)}%`;
+                        document.getElementById('temperatura').textContent = `${parseFloat(data.temperatura).toFixed(2)}°C`;
                         document.getElementById('riego').textContent = data.humedad < 40 ? 'Activo' : 'Inactivo';
                     })
                     .catch(error => console.error('Error al obtener los datos:', error));
             }
+
 
             // Llama a la función al cargar la página
             updateSensorData();
