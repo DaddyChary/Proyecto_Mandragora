@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\src",
-    "\\src\\db\\controller",
-    "\\src\\views",
-    "\\src\\views\\css"
+    "\\src\\views"
   ],
-  "SelectedNode": "\\src\\views\\css\\styles.css",
+  "SelectedNode": "\\src\\views\\index.ejs",
   "PreviewInSolutionExplorer": false
 }

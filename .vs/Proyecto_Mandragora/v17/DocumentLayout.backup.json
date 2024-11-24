@@ -1,10 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\mandragora\\Proyecto_Mandragora\\",
+  "WorkspaceRootPath": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\Proyecto_Mandragora\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cuarto semestre informatica\\integracion a las competencias 2\\mandragora\\Proyecto_Mandragora\\src\\views\\pagina.ejs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\views\\pagina.ejs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cuarto semestre informatica\\integracion a las competencias 2\\Proyecto_Mandragora\\src\\views\\index.ejs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\views\\index.ejs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cuarto semestre informatica\\integracion a las competencias 2\\Proyecto_Mandragora\\src\\views\\calendario.ejs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:src\\views\\calendario.ejs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\cuarto semestre informatica\\integracion a las competencias 2\\mandragora\\Proyecto_Mandragora\\src\\views\\pagina.ejs||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,15 +26,38 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "index.ejs",
+              "DocumentMoniker": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\Proyecto_Mandragora\\src\\views\\index.ejs",
+              "RelativeDocumentMoniker": "src\\views\\index.ejs",
+              "ToolTip": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\Proyecto_Mandragora\\src\\views\\index.ejs",
+              "RelativeToolTip": "src\\views\\index.ejs",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAGQAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-24T21:31:11.753Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "calendario.ejs",
+              "DocumentMoniker": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\Proyecto_Mandragora\\src\\views\\calendario.ejs",
+              "RelativeDocumentMoniker": "src\\views\\calendario.ejs",
+              "ToolTip": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\Proyecto_Mandragora\\src\\views\\calendario.ejs",
+              "RelativeToolTip": "src\\views\\calendario.ejs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-11-24T21:31:08.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "pagina.ejs",
               "DocumentMoniker": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\mandragora\\Proyecto_Mandragora\\src\\views\\pagina.ejs",
-              "RelativeDocumentMoniker": "src\\views\\pagina.ejs",
+              "RelativeDocumentMoniker": "..\\mandragora\\Proyecto_Mandragora\\src\\views\\pagina.ejs",
               "ToolTip": "D:\\cuarto semestre informatica\\integracion a las competencias 2\\mandragora\\Proyecto_Mandragora\\src\\views\\pagina.ejs",
-              "RelativeToolTip": "src\\views\\pagina.ejs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAEAAAAAAAAAA==",
+              "RelativeToolTip": "..\\mandragora\\Proyecto_Mandragora\\src\\views\\pagina.ejs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-11-19T00:47:38.315Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-19T00:47:38.315Z"
             }
           ]
         }
