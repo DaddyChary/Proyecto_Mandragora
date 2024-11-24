@@ -1,0 +1,47 @@
+[
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "generar_datos",
+        "kind": 2,
+        "importPath": "generar_datos",
+        "description": "generar_datos",
+        "peekOfCode": "def generar_datos():\n    while True:\n        # Generar datos simulados\n        humedad = random.uniform(30, 70)  # Humedad entre 30% y 70%\n        temperatura = random.uniform(15, 35)  # Temperatura entre 15°C y 35°C\n        # Enviar los datos al servidor Node.js\n        payload = {\"humedad\": humedad, \"temperatura\": temperatura}\n        try:\n            response = requests.post(URL, json=payload)\n            print(f\"Datos enviados: {payload}, Respuesta: {response.status_code}\")",
+        "detail": "generar_datos",
+        "documentation": {}
+    },
+    {
+        "label": "URL",
+        "kind": 5,
+        "importPath": "generar_datos",
+        "description": "generar_datos",
+        "peekOfCode": "URL = \"http://localhost:2000/\"  # Ruta en tu servidor Node.js\ndef generar_datos():\n    while True:\n        # Generar datos simulados\n        humedad = random.uniform(30, 70)  # Humedad entre 30% y 70%\n        temperatura = random.uniform(15, 35)  # Temperatura entre 15°C y 35°C\n        # Enviar los datos al servidor Node.js\n        payload = {\"humedad\": humedad, \"temperatura\": temperatura}\n        try:\n            response = requests.post(URL, json=payload)",
+        "detail": "generar_datos",
+        "documentation": {}
+    }
+]

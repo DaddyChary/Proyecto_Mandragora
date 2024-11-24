@@ -1,18 +1,18 @@
 const conn = require('../connection.js');
 
-const TABLA = "MonitoreoPlanta";
+const TABLA = "riego";
 
-// Obtener todos los registros de monitoreo (planta)
+// Obtener todos los registros de riego
 function getAll() {
     return new Promise((resolve, reject) => {
-        const query = `SELECT * FROM ${TABLA} ORDER BY fecha_hora DESC`;
+        const query = `SELECT * FROM ${TABLA} ORDER BY fecha DESC, hora DESC`; // Ordenar por fecha y hora
         conn.query(query, (error, result) => {
             return error ? reject(error) : resolve(result);
         });
     });
 }
 
-// Obtener un único registro por su ID
+// Obtener un único registro de riego por su ID
 function getOneBy(id) {
     return new Promise((resolve, reject) => {
         const query = `SELECT * FROM ${TABLA} WHERE id = ?`;
@@ -22,27 +22,29 @@ function getOneBy(id) {
     });
 }
 
-// Insertar un nuevo monitoreo en la base de datos
+// Insertar un nuevo evento de riego en la base de datos
 function insert(data) {
     return new Promise((resolve, reject) => {
-        const query = `INSERT INTO ${TABLA} SET ?`;
-        conn.query(query, data, (error, result) => {
+        const query = `INSERT INTO ${TABLA} (fecha, hora) VALUES (?, ?)`; // No usar comillas alrededor de los placeholders
+        console.log(data.fecha, data.hora);
+        conn.query(query, [data.fecha, data.hora], (error, result) => {
             return error ? reject(error) : resolve(result);
         });
     });
 }
 
-// Actualizar los datos de monitoreo de una planta
+// Actualizar un evento de riego en la base de datos
 function update(data) {
     return new Promise((resolve, reject) => {
-        const query = `UPDATE ${TABLA} SET ? WHERE id = ?`;
-        conn.query(query, [data, data.id], (error, result) => {
+        const query = `UPDATE ${TABLA} SET fecha = ?, hora = ? WHERE id = ?`; // Actualizar solo fecha y hora
+        console.log(data.id, data.fecha, data.hora);
+        conn.query(query, [data.fecha, data.hora, data.id], (error, result) => {
             return error ? reject(error) : resolve(result);
         });
     });
 }
 
-// Eliminar un registro de monitoreo por su ID
+// Eliminar un evento de riego por su ID
 function deleteBy(id) {
     return new Promise((resolve, reject) => {
         const query = `DELETE FROM ${TABLA} WHERE id = ?`;

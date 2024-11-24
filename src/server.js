@@ -6,6 +6,8 @@ const morgan = require('morgan');
 const path = require('path');
 const bodyParser = require('body-parser');
 const sensorRoutes = require('../src/routes/sensor.routes.js');
+const calendarioRoutes = require('../src/routes/calendario.routes.js');
+
 
 const app = express();
 const server = http.createServer(app);
@@ -22,6 +24,8 @@ app.use(bodyParser.json());
 
 // Rutas
 app.use(sensorRoutes);
+app.use(calendarioRoutes);
+
 
 // Iniciar servidor
 server.listen(PORT, () => {
