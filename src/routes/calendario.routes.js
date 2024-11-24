@@ -57,7 +57,7 @@ ruta.post('/edit/:id', async (req, res) => {
 // Eliminar un evento
 ruta.post('/delete/:id', async (req, res) => {
     try {
-        calendarioController.update(req.params.id)
+        calendarioController.deleteBy(req.params.id)
             .then((calendario) => {
                 res.redirect('/calendario');
             })

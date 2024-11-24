@@ -1,11 +1,11 @@
 <!-- sensor-history.ejs -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Historial de Sensores - Invernadero Digital</title>
-    <style>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Historial de Sensores - Invernadero Digital</title>
+        <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f8f0;
@@ -56,66 +56,69 @@
             margin-top: 20px;
         }
     </style>
-</head>
-<body>
-    <!-- Barra de navegación -->
-    <nav class="navbar">
-        <div class="logo">Invernadero Digital</div>
-        <div class="nav-links">
-            <a href="/">Plantas</a>
-            <a href="./calendario">Calendario</a>
-            <a href="./sensor-history">Historial</a>
+    </head>
+    <body>
+        <!-- Barra de navegación -->
+        <nav class="navbar">
+            <div class="logo">Invernadero Digital</div>
+            <div class="nav-links">
+                <a href="/">Plantas</a>
+                <a href="./calendario">Calendario</a>
+                <a href="./sensor-history">Historial</a>
+            </div>
+        </nav>
+
+        <!-- Contenido -->
+        <div class="content">
+            <h2>Historial de Sensores</h2>
+            <p>Este es el historial de los valores de humedad y temperatura del
+                invernadero.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Humedad (%)</th>
+                        <th>Temperatura (°C)</th>
+                    </tr>
+                </thead>
+                <tbody id="history-table">
+                    <!-- Los datos serán insertados aquí por JavaScript -->
+                </tbody>
+            </table>
         </div>
-    </nav>
 
-    <!-- Contenido -->
-    <div class="content">
-        <h2>Historial de Sensores</h2>
-        <p>Este es el historial de los valores de humedad y temperatura del invernadero.</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Humedad (%)</th>
-                    <th>Temperatura (°C)</th>
-                </tr>
-            </thead>
-            <tbody id="history-table">
-                <!-- Los datos serán insertados aquí por JavaScript -->
-            </tbody>
-        </table>
-    </div>
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2024 Invernadero Digital. Todos los derechos
+                reservados.</p>
+        </footer>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Invernadero Digital. Todos los derechos reservados.</p>
-    </footer>
-
-    <script>
+        <script>
         // Función para obtener y mostrar el historial
         function updateHistory() {
-                fetch('/api/sensor-history')  // Ruta para obtener el historial
-                    .then(response => response.json())
-                    .then(data => {
-                        const historyTable = document.getElementById('history-table');
-                        historyTable.innerHTML = ''; // Limpiar tabla
+            fetch('/api/sensor-history')  // Ruta para obtener el historial
+                .then(response => response.json())
+                .then(data => {
+                    const historyTable = document.getElementById('history-table');
+                    historyTable.innerHTML = ''; // Limpiar tabla
 
-                        data.forEach(entry => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                                <td>${new Date(entry.timestamp).toLocaleString()}</td>
-                                <td>${entry.humedad}</td>
-                                <td>${entry.temperatura}</td>
-                            `;
-                            historyTable.appendChild(row);
-                        });
-                    })
-                    .catch(error => console.error('Error al obtener el historial:', error));
-            }
+                    data.forEach(entry => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${new Date(entry.timestamp).toLocaleString()}</td>
+                            <td>${parseFloat(entry.humedad).toFixed(2)}</td>
+                            <td>${parseFloat(entry.temperatura).toFixed(2)}</td>
+                        `;
+                        historyTable.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error al obtener el historial:', error));
+        }
 
-            // Llama a la función para actualizar el historial cada 5 segundos (5000 ms)
-            setInterval(updateHistory, 5000);
+        // Llama a la función para actualizar el historial cada 5 segundos (5000 ms)
+        setInterval(updateHistory, 5000);
         updateHistory();
+
     </script>
-</body>
+    </body>
 </html>
