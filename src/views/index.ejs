@@ -84,8 +84,7 @@
         <!-- Contenido principal -->
         <div class="main-content">
             <div class="left-section">
-                <img src="img/planta.jpg" alt="Imagen de un invernadero"
-                    class="greenhouse-image">
+                <img src="img/planta.jpg" alt="Imagen de un invernadero" class="greenhouse-image">
             </div>
             <div class="right-section">
                 <h2>Plantas en el invernadero</h2>
@@ -101,7 +100,6 @@
             <p>Controla las condiciones ideales para tus plantas.</p>
             <button class="btn-regar" onclick="regar()">💧 Regar</button>
         </div>
-        
 
         <!-- Sensores -->
         <div class="sensors">
@@ -121,11 +119,13 @@
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2024 Invernadero Digital. Todos los derechos reservados.
-                Realizado por Luis Tobar Gonzalez & Gamaliel Moya Vasquéz</p>
+            <p>&copy; 2024 Invernadero Digital. Todos los derechos reservados. Realizado por Luis Tobar Gonzalez & Gamaliel Moya Vasquéz</p>
         </footer>
 
         <script>
+            let humidity = 40;  // Valor inicial de humedad
+            let temperature = 25;  // Valor inicial de temperatura
+
             // Función para actualizar los datos de los sensores
             function updateSensorData() {
                 fetch('/p')  // Cambia aquí si tu ruta es diferente
@@ -139,6 +139,32 @@
                     .catch(error => console.error('Error al obtener los datos:', error));
             }
 
+            // Función para regar (aumenta la humedad y disminuye la temperatura gradualmente)
+            function regar() {
+                let targetHumidity = humidity + 10;  // Incrementar humedad en 10%
+                let targetTemperature = temperature - 2;  // Disminuir temperatura en 2°C
+                let duration = 10000;  // Duración en milisegundos (10 segundos)
+                let interval = 100;  // Intervalo en milisegundos para actualizar
+                let stepHumidity = (targetHumidity - humidity) / (duration / interval);
+                let stepTemperature = (targetTemperature - temperature) / (duration / interval);
+                let timeElapsed = 0;
+
+                let intervalId = setInterval(() => {
+                    // Incrementar los valores gradualmente
+                    humidity += stepHumidity;
+                    temperature += stepTemperature;
+                    timeElapsed += interval;
+
+                    // Actualizar la interfaz
+                    document.getElementById('humedad').textContent = `${humidity.toFixed(2)}%`;
+                    document.getElementById('temperatura').textContent = `${temperature.toFixed(2)}°C`;
+
+                    // Cuando la duración ha pasado, detener el intervalo
+                    if (timeElapsed >= duration) {
+                        clearInterval(intervalId);
+                    }
+                }, interval);
+            }
 
             // Llama a la función al cargar la página
             updateSensorData();
